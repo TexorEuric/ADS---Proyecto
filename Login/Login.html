@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido - UniAlert</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+
+<body class="body-login">
+
+    <header class="navbar">
+        <div class="navbar-left">
+            <img src="../Multimedia/Unialert Logo.png" alt="Logo de UniAlert" class="navbar-logo">
+            <span class="navbar-logo-text">UNIALERT</span>
+        </div>
+    </header>
+
+    <main class="login-wrapper">
+        <div class="logo-container">
+            <img src="../Multimedia/Unialert Logo.png" alt="Logo de UniAlert" class="logo-image">
+            <span class="logo-text">UniAlert</span>
+        </div>
+
+        <div class="login-card">
+            <h2 class="title">Bienvenido</h2>
+            <p class="subtitle">Accede con tu cuenta</p>
+            
+            <div id="error-alert" class="error-message-container" style="display: none;">
+                <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
+                </svg>
+                <span id="error-text">Credenciales incorrectas</span>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+    
+                <div class="input-group">
+                    <label for="email">Usuario o Email</label>
+                    <input type="text" id="email" name="email" class="form-input" placeholder="Usuario o Correo" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Tu contraseña" required>
+                </div>
+
+                <button type="submit" class="login-button">Iniciar Sesión</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const errorAlert = document.getElementById('error-alert');
+        const errorText = document.getElementById('error-text');
+        // Seleccionamos los inputs que tengan la clase .form-input
+        const inputs = document.querySelectorAll('.form-input');
+
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // IMPORTANTE: Evita que la página se recargue sola
+
+            // 1. Limpiar estado de errores previos
+            errorAlert.style.display = 'none';
+            inputs.forEach(input => input.classList.remove('input-error'));
+
+            // 2. Empaquetar los datos del formulario
+            const formData = new FormData(loginForm);
+
+            // 3. Enviar datos a PHP sin salir de la página
+            fetch('../Backend/login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json()) // Esperamos respuesta JSON del PHP
+            .then(data => {
+                if (data.status === 'success') {
+                    // SI ES CORRECTO: Redirigir a la página que diga el PHP
+                    window.location.href = data.redirect;
+                } else {
+                    // SI HAY ERROR:
+                    // A. Poner mensaje de error
+                    errorText.textContent = data.message;
+                    errorAlert.style.display = 'flex';
+                    
+                    // B. Pintar los bordes de rojo
+                    inputs.forEach(input => input.classList.add('input-error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorText.textContent = "Error de conexión con el servidor.";
+                errorAlert.style.display = 'flex';
+            });
+        });
+
+        // 4. Quitar el color rojo en cuanto el usuario empiece a escribir para corregir
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                if(this.classList.contains('input-error')) {
+                    this.classList.remove('input-error');
+                    errorAlert.style.display = 'none';
+                }
+            });
+        });
+        window.addEventListener('pageshow', function(event) {
+            var form = document.querySelector('.login-form');
+                if (form) {
+                    form.reset();
+                }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1108 @@
+/* ---CSS GLOBALES --- */
+* {
+    box-sizing: border-box; /* Asegura que padding no afecte el tamaño final */
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Estilo unificado para TODOS los inputs --- */
+/* Agregamos todas las variantes posibles para que no se escape ninguno */
+input[type="text"],
+input[type="password"],
+input[type="email"], /* <--- Asegúrate de que esta línea exista */
+select,
+textarea,
+.form-input {  /* <--- Esta clase es la clave, ya que la usas en el HTML */
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif; /* Forzamos la fuente */
+    color: #333;
+    background-color: #f9f9f9; /* Fondo gris claro */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    
+    /* Estos quitan el estilo por defecto del navegador (especialmente en móviles/Mac) */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Estilo al hacer clic (Foco) */
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select:focus,
+textarea:focus,
+.form-input:focus {
+    outline: none;
+    border-color: #333;
+    box-shadow: 0 0 0 3px rgba(50, 50, 50, 0.1);
+    background-color: #fff;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f5f7;
+    color: #333;
+    margin: 0;
+    
+    /* El padding-top es para la navbar FIJA, ambas páginas la tienen */
+    padding-top: 60px; 
+    box-sizing: border-box;
+}
+
+/* --- LAYOUT PARA LA PÁGINA DE LOGIN --- */
+.body-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px); 
+}
+
+/* --- LAYOUT PARA LA PÁGINA DE ADMIN --- */
+.body-admin {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 60px);
+}
+
+/* --- Contenedor Principal --- */
+.login-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px; /* Ancho máximo del formulario */
+    padding: 20px;
+}
+
+/* --- Logo --- */
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #444;
+}
+
+.logo-image {
+    width: 28px;
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-right: 10px; /*Espacio a la derecha del texto "UniAlert" */
+}
+
+/* --- Tarjeta de Login --- */
+.login-card {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 28px;
+}
+
+/* --- Formulario --- */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+/* Fila para "Password" y "Olvidaste contraseña" */
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.label-row label {
+    margin-bottom: 0;
+}
+
+.forgot-link {
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.forgot-link:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* Campos de Email y Password */
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #333;
+    box-shadow: 0 0 0 3px rgba(50, 50, 50, 0.1);
+}
+
+/* --- Botón de Login --- */
+.login-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background-color 0.2s;
+}
+
+.login-button:hover {
+    background-color: #333; /* Aclara el boton al pasar el mouse */
+}
+
+/* --- Barra de Navegación Superior (Navbar) --- */
+.navbar {
+    position: fixed; /* Lo fija en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2b2b2b;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.navbar-left,
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain; /* Asegura que la imagen se ajuste sin recortarse */
+    border-radius: 8px; /* Esquinas redondeadas */
+    margin-right: 10px;
+}
+
+.navbar-logo-text {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; /* Para que sea circular */
+    object-fit: cover; /* Asegura que la imagen llene el espacio */
+    margin-right: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column; /* Nombre arriba, detalles abajo */
+    color: #f0f0f0; /* Color del texto del usuario */
+    font-size: 14px;
+}
+
+.user-name {
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.user-details {
+    font-size: 12px;
+    color: #a0a0a0;
+}
+
+body {
+    padding-top: 60px; 
+}
+
+/* --- ESTILOS PARA LA PÁGINA DE ADMINISTRACIÓN --- */
+
+/* Contenedor principal de la página de admin */
+.admin-container {
+    width: 90%;
+    max-width: 960px; 
+    margin: 40px auto; 
+    flex-grow: 1; 
+}
+
+/* Encabezado de la página (título y descripción) */
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-header h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Lista que contiene todas las tarjetas de acción */
+.action-list {
+    display: grid;
+    gap: 20px; /* Espacio entre las tarjetas */
+}
+
+/* Estilo individual de cada tarjeta */
+.action-card {
+    background-color: #ffffff;
+    border: 1px solid #e9e9e9;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.action-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+}
+
+/* Icono dentro de la tarjeta */
+.card-icon {
+    width: 72px;
+    height: 72px;
+    margin-right: 24px;
+    flex-shrink: 0; /* Evita que el icono se encoja */
+}
+
+/* Contenido de texto (título, descripción y botón) */
+.card-content {
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 6px;
+}
+
+.card-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+/* Botón de 'Acceder' dentro de la tarjeta */
+.card-button {
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-block; /* Para que el margin-top funcione */
+    transition: background-color 0.2s;
+}
+
+.card-button:hover {
+    background-color: #e4e6e9;
+}
+
+/* Footer de Advertencia */
+.warning-footer {
+    width: 90%;
+    max-width: 800px;
+    margin: 60px auto 40px auto;
+    background-color: #3d3d3d;
+    color: #e0e0e0;
+    padding: 24px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.warning-title {
+    color: #ff6b6b;
+    font-weight: 700;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.warning-footer p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* --- ESTILOS PARA LA PÁGINA DE FORMULARIO  --- */
+
+.form-page-title {
+    background-color: #ffe0e0;
+    color: #c04040;
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+/* Tarjeta blanca que contiene el formulario */
+.form-card {
+    background-color: #ffffff;
+    border: 1px solid #e9e9e9;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Grid para el layout de 2 columnas */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 32px;
+}
+
+/* Contenedor para cada grupo de label + input */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+/* Estilo unificado para inputs, textareas y selects */
+.form-input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Estilo para el foco (cuando haces click) */
+.form-input:focus {
+    outline: none;
+    border-color: #333;
+    box-shadow: 0 0 0 3px rgba(50, 50, 50, 0.1);
+    background-color: #fff;
+}
+
+/* Estilo específico para textareas */
+textarea.form-input {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Añade la flecha a los 'select' */
+select.form-input {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 10px 10px;
+}
+
+/* Contenedor para alinear el botón */
+.form-actions {
+    margin-top: 32px;
+    display: flex;
+    justify-content: flex-end; /* Alinea el botón a la derecha */
+}
+
+/* Botón de 'Finalizar' */
+.submit-button {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #444;
+}
+
+/* --- Media Query para hacer el formulario de 1 columna en móviles --- */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-page-title {
+        font-size: 18px;
+    }
+}
+
+/* --- ESTILOS ADICIONALES PARA FORMULARIO DE SEGURIDAD --- */
+
+/* Estilo para el título de la página de Seguridad */
+.form-page-title-security {
+    background-color: #e0e0ff;
+    color: #5d5ddb;
+}
+
+/* --- ESTILOS PARA LA PÁGINA DE HISTORIAL DE REPORTES --- */
+
+/* Barra de filtros (fecha y búsqueda) */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 16px 24px;
+    border: 1px solid #e9e9e9;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.date-range-text {
+    font-weight: 500;
+    color: #333;
+}
+
+.date-picker-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.date-picker-label {
+    color: #666;
+    margin-right: 8px;
+    cursor: text;
+}
+
+.date-picker {
+    border: none;
+    background: transparent;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+/* Estilo del ícono del calendario */
+.date-picker::-webkit-calendar-picker-indicator {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-calendar' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/%3E%3C/svg%3E") no-repeat;
+    background-position: center;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding-left: 12px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    padding: 8px 0;
+    background: transparent;
+    font-size: 14px;
+}
+
+.search-button {
+    border: none;
+    background: transparent;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #666;
+}
+
+/* Lista de reportes */
+.report-list {
+    display: grid;
+    gap: 16px;
+}
+
+.report-item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: 12px;
+    padding: 16px 24px;
+    transition: box-shadow 0.2s;
+}
+
+.report-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+}
+
+.report-icon {
+    color: #888;
+    margin-right: 16px;
+    flex-shrink: 0;
+}
+
+.report-content {
+    flex-grow: 1;
+}
+
+.report-content h4 {
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 4px 0;
+}
+
+.report-content p {
+    font-size: 14px;
+    color: #777;
+    margin: 0;
+}
+
+.review-button {
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.review-button:hover {
+    background-color: #e4e6e9;
+}
+
+/* Paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    gap: 8px;
+}
+
+.page-link {
+    color: #555;
+    text-decoration: none;
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.page-link:hover {
+    background-color: #f0f2f5;
+    border-color: #ccc;
+}
+
+.page-link.active {
+    background-color: #2b2b2b;
+    color: #fff;
+    border-color: #2b2b2b;
+}
+
+.page-link.arrow {
+    font-size: 18px;
+}
+
+/* --- Media Query para hacer los filtros responsivos --- */
+@media (max-width: 992px) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+}
+
+/* --- ESTILOS PARA LA PÁGINA DE REPORTES PENDIENTES --- */
+
+.filter-bar-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 0 8px;
+}
+
+.filter-bar-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Contenedor para los filtros de la derecha */
+.filter-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Espacio entre el filtro de fecha y la búsqueda */
+}
+
+@media (max-width: 768px) {
+    .filter-bar-simple {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+    
+    .filter-bar-title {
+        text-align: center;
+    }
+    
+    .filter-bar-actions {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+/* --- ESTILOS PARA CHECKBOX --- */
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Estilo del checkbox */
+.form-checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    flex-shrink: 0;
+    accent-color: #333;
+}
+
+/* Estilo de la etiqueta del checkbox */
+.form-group-checkbox label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+}
+
+/* --- ESTILOS PARA LA PÁGINA DE ADMIN USUARIOS --- */
+
+/* Barra de Pestañas (Tabs) */
+.tab-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 24px;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.tab-link {
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #666;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-link:hover {
+    color: #000;
+}
+
+.tab-link.active {
+    color: #2b2b2b;
+    border-bottom-color: #2b2b2b;
+}
+
+.tab-count {
+    background-color: #f0f2f5;
+    color: #555;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-left: 6px;
+}
+
+.tab-actions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Botones genéricos */
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: #2b2b2b;
+    color: #fff;
+    border-color: #2b2b2b;
+}
+.btn-primary:hover {
+    background-color: #444;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #333;
+    border-color: #ddd;
+}
+.btn-secondary:hover {
+    background-color: #f9f9f9;
+    border-color: #ccc;
+}
+
+/* --- Estilos de la Tabla de Datos --- */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    background-color: #fff;
+    border: 1px solid #e9e9e9;
+    border-radius: 12px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+}
+
+.data-table th {
+    font-size: 13px;
+    font-weight: 500;
+    color: #777;
+    text-transform: uppercase;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.col-handle, .col-menu {
+    width: 40px;
+    text-align: center;
+    padding: 0;
+}
+
+.icon-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    padding: 8px;
+    border-radius: 50%;
+}
+.icon-button:hover {
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.btn-delete {
+    background-color: #ffe0e0;
+    color: #d93030;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.btn-delete:hover {
+    background-color: #fdd4d4;
+    color: #b02020;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.status-active {
+    background-color: #28a745;
+}
+.status-inactive {
+    background-color: #adb5bd;
+}
+
+/* --- Paginación de la Tabla --- */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    font-size: 14px;
+    color: #666;
+}
+.footer-pagination {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.rows-select {
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+}
+.page-nav {
+    display: flex;
+    gap: 4px;
+}
+.page-nav-btn {
+    border: 1px solid #ddd;
+    background-color: #fff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.page-nav-btn:hover {
+    background-color: #f9f9f9;
+}
+
+
+/* --- VENTANA MODAL DE CONFIRMACIÓN --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    
+    /* Oculto por defecto */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+.modal-overlay.modal-visible {
+    /* Clase que añade JS para mostrar el modal */
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-box {
+    background-color: #fff;
+    padding: 28px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 440px;
+    
+    /* Animación de entrada */
+    transform: scale(0.95);
+    transition: transform 0.2s;
+}
+.modal-overlay.modal-visible .modal-box {
+    transform: scale(1);
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+}
+
+.modal-text {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA LA PÁGINA USUARIO INDEX --- */
+.large-card-icon {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-right: 32px;
+    flex-shrink: 0;
+}
+
+.action-card h3 {
+    font-size: 20px;
+}
+
+/* --- ESTILOS ESPECÍFICOS PARA EL PANEL DE VIGILANTE --- */
+.card-button-outline {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
+    margin-left: 16px; /* Espacio entre el texto y el botón */
+}
+
+.card-button-outline:hover {
+    border-color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Ajuste: Si usamos la clase .page-header pero queremos alinearla a la izquierda
+   como en esta imagen, podemos crear una clase modificadora o usar estilos en línea.
+   En el HTML usé estilos en línea para ser rápido, pero aquí tienes una clase si prefieres:
+*/
+.page-header-left {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+/* --- ESTILO BOTÓN "ATRÁS" --- */
+.btn-back-global {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 12px 8px 0; /* Un poco de espacio */
+    margin-bottom: 16px; /* Separación del contenido de abajo */
+    transition: color 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-back-global:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+.btn-back-global svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- ESTILOS PARA ERRORES DE LOGIN --- */
+
+/* Clase para pintar el borde del input de rojo */
+.input-error {
+    border-color: #d93025 !important; /* Rojo Google */
+    background-color: #fff0f0 !important; /* Fondo rojizo muy suave */
+    box-shadow: 0 0 0 2px rgba(217, 48, 37, 0.2) !important; /* Resplandor rojo */
+}
+
+/* Contenedor del mensaje de error */
+.error-message-container {
+    background-color: #fce8e6;
+    color: #d93025;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #fad2cf;
+    
+    /* Oculto por defecto */
+    display: none; 
+}
+
+/* Icono de advertencia dentro del mensaje */
+.error-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
