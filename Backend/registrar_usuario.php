@@ -11,14 +11,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $apMaterno = trim($_POST['ap_materno'] ?? ''); 
     $correo = trim($_POST['correo'] ?? '');
     $nickname = trim($_POST['nickname'] ?? '');
-    $pass = $_POST['password'] ?? '';
+    
+    // 1. Recibimos la contraseña plana
+    $passPlana = $_POST['password'] ?? ''; 
+    
+    // 2. LA CIFRAMOS (Hasheamos)
+    $passHash = password_hash($passPlana, PASSWORD_DEFAULT);
     
     $idRol = isset($_POST['id_rol']) ? $_POST['id_rol'] : 3; 
     $edificio = !empty($_POST['edificio']) ? $_POST['edificio'] : NULL;
     $depto = !empty($_POST['departamento']) ? $_POST['departamento'] : NULL;
 
-    // --- 2. VALIDACIÓN DE CAMPOS VACÍOS (Server Side) ---
-    if (empty($nombre) || empty($apPaterno) || empty($correo) || empty($nickname) || empty($pass)) {
+    // --- 2. VALIDACIÓN DE CAMPOS VACÍOS (CORREGIDO) ---
+    if (empty($nombre) || empty($apPaterno) || empty($correo) || empty($nickname) || empty($passPlana)) {
         echo json_encode(['status' => 'error', 'message' => 'Por favor, llena todos los campos obligatorios.']);
         exit();
     }
@@ -39,7 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // B. Insertar en CREDENCIALES
         $stmt2 = $conn->prepare("INSERT INTO Credenciales (IdUsuario, NickName, Contrasena) VALUES (?, ?, ?)");
-        $stmt2->bind_param("iss", $idUsuarioNuevo, $nickname, $pass);
+        // Usamos $passHash (la encriptada)
+        $stmt2->bind_param("iss", $idUsuarioNuevo, $nickname, $passHash); 
 
         if (!$stmt2->execute()) {
             // Error común: Nickname duplicado
