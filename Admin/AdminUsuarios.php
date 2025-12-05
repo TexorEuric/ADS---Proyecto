@@ -156,24 +156,6 @@ if (!empty($datos['Edificio']) && !empty($datos['Departamento'])) {
                 </tbody>
             </table>
         </div>
-
-        <div class="table-footer">
-            <div class="footer-pagination">
-                <span>Filas por página:</span>
-                <select class="rows-select">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                </select>
-                <span class="page-info">Página 1 de 1</span>
-                <div class="page-nav">
-                    <button class="page-nav-btn" aria-label="Primera página">&laquo;</button>
-                    <button class="page-nav-btn" aria-label="Página anterior">&lsaquo;</button>
-                    <button class="page-nav-btn" aria-label="Página siguiente">&rsaquo;</button>
-                    <button class="page-nav-btn" aria-label="Última página">&raquo;</button>
-                </div>
-            </div>
-        </div>
         <button onclick="window.location.href='Admin.php'" class="btn-back-global">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
