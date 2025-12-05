@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-12-2025 a las 05:55:08
+-- Tiempo de generación: 06-12-2025 a las 00:36:05
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -39,12 +39,18 @@ CREATE TABLE `credenciales` (
 --
 
 INSERT INTO `credenciales` (`IdCredencial`, `IdUsuario`, `NickName`, `Contrasena`) VALUES
-(1, 1, 'OswaldoGV', '1234'),
-(2, 2, 'Vec1', '1234'),
-(3, 3, 'Admin1', '1234'),
-(4, 4, 'Vig1', '1234'),
-(6, 6, 'MarianaAR', '1234'),
-(8, 8, 'Vec2', '1234');
+(10, 10, 'Admin 1', '$2y$10$DClWQMSzcU5wP6BR7SFu8uTu9fhaejXwIfe90yC0ir.OoIycKebGS'),
+(11, 11, 'OswaldoGV', '$2y$10$hoAkZC9.NbzR3rnO3u.jTOhE.BtgJrh1zOIJg72VNCq74VikjBLF2'),
+(12, 12, 'MarianaAR', '$2y$10$NKII7z70TY1wRKT9yt8lju.HUo4uTDZE9GVwW.ON9f8HMnlXJHyce'),
+(13, 13, 'Vigilante 1', '$2y$10$jDo6miCxKryaLtS5l/uA/elvqueYGzMbwpScJMxcAaS9OjT0Ov0Vq'),
+(14, 14, 'Vecino 1', '$2y$10$SNvgCAfyQ6o4T.WimXwWM.DnIU91jzE8mz11vuChRXExOueBn3H3S'),
+(15, 15, 'Vecino 2', '$2y$10$QvQCYw7b5YiY9r7uRnFIQeZ5CdZHfLKrfm7hV7K2LW01MmHNp5ozq'),
+(16, 16, 'Vigilante 2', '$2y$10$iyyM6/1wnGexZnR6Yt5e7ehrDontyM8/nduh9Q6qUi1pjC8NAqHM.'),
+(17, 17, 'Vigilante 3', '$2y$10$5l76bSu9HBuuO6tF1MCJWewBgHJP6x3G.YKpp9XF396jV4V25qv8W'),
+(18, 18, 'Vigilante 4', '$2y$10$4nmwXiXI2/9sVoHadHteCucVvqOlpWjAWRHP.zSdE80g/Y1rJPlqC'),
+(19, 19, 'Vecino 3', '$2y$10$2O7lQX2d42YIG0Izn3CwgeMxVKB5uRKL7Uvn9AEWYpVSzyDc9nCKa'),
+(20, 20, 'Vecino 4', '$2y$10$wSSvCyzAidNWBFUzwusGmO0VsYV0HOg6mbeMdD7OUco8xkSGNaxNy'),
+(21, 21, 'Vecino 5', '$2y$10$Bi038sSShFLPPwwIPuk9yeh97Erp2BIL8cC0nn1CBOrVpjDQofvJa');
 
 -- --------------------------------------------------------
 
@@ -75,14 +81,11 @@ CREATE TABLE `incidentes` (
 --
 
 INSERT INTO `incidentes` (`IdIncidente`, `IdUsuario`, `IdVigilante`, `EdificioAfectado`, `DepartamentoAfectado`, `Sangre`, `TipoEmergencia`, `PublicoOPrivado`, `Armas`, `Descripcion`, `Fecha`, `HoraInicio`, `HoraFin`, `AccionesGuardia`, `Aprobado`) VALUES
-(1, 3, NULL, 'B1', '2', 0, 'medica', 'publico', 0, 'Descripción del usuario: fdsfs. \n[DETALLES MÉDICOS] Paciente: Vec2. Edad: mayor. Sexo: masculino. Consciente: no. Respirando: si_dificultad. ', '2025-12-03', '18:36:14', '21:15:29', NULL, 0),
-(2, 3, NULL, 'B1', '2', 0, 'seguridad', 'publico', 1, 'Descripción del usuario: Asalto. \n[DETALLES SEGURIDAD] Sucede ahora: no. Heridos: no. Personas: 2. Desc. Sospechosos: Morenas. Fuga: vehiculo. Vehículo: Moto Italika Azul verde. Anónimo: si.', '2025-12-03', '18:38:22', '21:07:20', NULL, 0),
-(3, 3, NULL, 'B1', '2', 0, 'medica', 'privado', 0, 'Descripción del usuario: Infarto. \n[DETALLES MÉDICOS] Paciente: Vec3. Edad: mayor. Sexo: femenino. Consciente: no. Respirando: si_dificultad. ', '2025-12-03', '19:40:46', '21:15:29', NULL, 1),
-(4, 3, NULL, 'B1', '2', 0, 'seguridad', 'publico', 0, 'Descripción del usuario: Robo. \n[DETALLES SEGURIDAD] Sucede ahora: no. Heridos: no. Personas: 2. Desc. Sospechosos: Morenas. Fuga: vehiculo. Vehículo: Camioneta Chevrolet Negra. Anónimo: si.', '2025-12-03', '20:33:31', '21:07:20', NULL, 2),
-(5, 3, NULL, 'B1', '2', 0, 'medica', 'Indefinido', 0, 'Descripción del usuario: . \n[DETALLES MÉDICOS] Paciente: . Edad: ?. Sexo: ?. Consciente: ?. Respirando: ?. ', '2025-12-03', '21:46:23', NULL, NULL, 0),
-(6, 3, NULL, 'B1', '2', 0, 'seguridad', 'publico', 0, 'Detalle: Explosión. \n[SEGURIDAD] Sucede ahora: si. Heridos: si. Personas: mas-de-5. Sospechosos: Los Vecinos del piso mas alto. Fuga: no_huyeron. Vehículo: . Anónimo: no.', '2025-12-03', '21:51:57', NULL, NULL, 0),
-(7, 6, NULL, 'A1', '4', 1, 'medica', 'publico', 0, 'Detalle: asdaxa. \n[MÉDICA] Paciente: Vec2. Edad: bebe. Sexo: masculino. Consciente: si. Respirando: si. Sangrado en: wda.', '2025-12-03', '22:14:39', '22:18:53', NULL, 0),
-(8, 6, NULL, 'A1', '4', 0, 'seguridad', 'publico', 1, 'Detalle: dwa. \n[SEGURIDAD] Sucede ahora: no. Heridos: no. Personas: 2. Sospechosos: Morenas. Fuga: vehiculo. Vehículo: dawdasdwq. Anónimo: si.', '2025-12-03', '22:16:13', '22:19:50', NULL, 1);
+(9, 11, NULL, 'A2', '23', 1, 'medica', 'cualquiera', 0, 'Detalle: Se cayó del 7mo piso. \n[MÉDICA] Paciente: Vecino 5. Edad: adulto. Sexo: masculino. Consciente: no. Respirando: no. Sangrado en: Todo el Cuerpo.', '2025-12-05', '17:28:20', '17:32:12', NULL, 0),
+(10, 12, NULL, 'A2', '23', 0, 'seguridad', 'publico', 1, 'Detalle: Robo. \n[SEGURIDAD] Sucede ahora: si. Heridos: no. Personas: 3-5. Sospechosos: Personas Morenas con ropa desgastada. Fuga: no_huyeron. Vehículo: . Anónimo: si.', '2025-12-05', '17:29:18', '17:34:15', NULL, 2),
+(11, 14, NULL, 'B1', '18', 0, 'medica', 'publico', 0, 'Detalle: Infarto. \n[MÉDICA] Paciente: Vecino 2. Edad: mayor. Sexo: femenino. Consciente: no. Respirando: si_dificultad.', '2025-12-05', '17:30:02', '17:34:54', NULL, 1),
+(12, 19, NULL, 'B1', '20', 0, 'seguridad', 'publico', 0, 'Detalle: Explosión. \n[SEGURIDAD] Sucede ahora: no. Heridos: si. Personas: mas-de-5. Sospechosos: Vecinos de la unidad. Fuga: no_huyeron. Vehículo: . Anónimo: no.', '2025-12-05', '17:30:49', '17:34:31', NULL, 0),
+(13, 20, NULL, 'B2', '8', 0, 'seguridad', 'publico', 0, 'Detalle: Se cayó un arbol. \n[SEGURIDAD] Sucede ahora: si. Heridos: no. Personas: ?. Sospechosos: . Fuga: . Vehículo: . Anónimo: no.', '2025-12-05', '17:31:28', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -142,12 +145,18 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`IdUsuario`, `IdRol`, `Nombre`, `ApPaterno`, `ApMaterno`, `Correo`, `Edificio`, `Departamento`, `Contador`, `Activo`) VALUES
-(1, 3, 'Oswaldo', 'Gil', 'Valentín', 'osw@unialert.com', 'A1', '14', 0, 1),
-(2, 3, 'Vecino1', 'A', 'A', 'vec1@unialert.com', 'A2', '1', 0, 1),
-(3, 1, 'Admin1', 'A', 'A', 'admin@unialert.com', 'B1', '2', 0, 1),
-(4, 2, 'Vigilante1', 'A', 'A', 'vig1@unialert.com', 'B2', '3', 0, 1),
-(6, 3, 'Mariana', 'Aguilar', 'Ramos', 'mar@unialert.com', 'A1', '4', 0, 1),
-(8, 3, 'Vecino2', 'A', 'A', 'vec2@unialert.com', 'A2', '5', 0, 1);
+(10, 1, 'Admin', '1', '.0', 'admin@unialert.com', 'A1', '1', 0, 1),
+(11, 3, 'Oswaldo', 'Gil', 'Valentín', 'osw@unialert.com', 'A2', '23', 0, 1),
+(12, 3, 'Mariana', 'Aguilar', 'Ramos', 'mar@unialert.com', 'A2', '23', 0, 1),
+(13, 2, 'Vigilante', '1', '.0', 'vig1@unialert.com', NULL, NULL, 0, 1),
+(14, 3, 'Vecino', '1', '.0', 'vec1@unialert.com', 'B1', '18', 0, 1),
+(15, 3, 'Vecino', '2', '.0', 'vec2@unialert.com', 'B2', '11', 0, 1),
+(16, 2, 'Vigilante', '2', '.0', 'vig2@unialert.com', NULL, NULL, 0, 1),
+(17, 2, 'Vigilante', '3', '.0', 'vig3@unialert.com', NULL, NULL, 0, 1),
+(18, 2, 'Vigilante', '4', '.0', 'vig4@unialert.com', NULL, NULL, 0, 1),
+(19, 3, 'Vecino', '3', '.0', 'vec3@unialert.com', 'B1', '20', 0, 1),
+(20, 3, 'Vecino', '4', '.0', 'vec4@unialert.com', 'B2', '8', 0, 1),
+(21, 3, 'Vecino', '5', '.0', 'vec5@unialert.com', 'A1', '22', 0, 1);
 
 --
 -- Índices para tablas volcadas
@@ -197,13 +206,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `credenciales`
 --
 ALTER TABLE `credenciales`
-  MODIFY `IdCredencial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IdCredencial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `incidentes`
 --
 ALTER TABLE `incidentes`
-  MODIFY `IdIncidente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IdIncidente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -221,7 +230,7 @@ ALTER TABLE `turnos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restricciones para tablas volcadas
