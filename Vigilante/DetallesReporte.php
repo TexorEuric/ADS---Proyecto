@@ -139,7 +139,7 @@ if (!$reporte) {
             <span class="navbar-logo-text">UNIALERT</span>
         </div>
         <div class="navbar-right">
-            <img src="../Multimedia/User Avatar.png" alt="Avatar" class="user-avatar">
+            <img src="../Multimedia/VigilanteAvatar.png" alt="Avatar" class="user-avatar">
             <div class="user-info">
                 <span class="user-name"><?php echo $nombreNavbar; ?></span>
                 <span class="user-details"><?php echo $detallesNavbar; ?></span>

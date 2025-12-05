@@ -85,7 +85,7 @@ $resultReportes = $conn->query($sqlReportes);
             <span class="navbar-logo-text">UNIALERT</span>
         </div>
         <div class="navbar-right">
-            <img src="../Multimedia/User Avatar.png" alt="Avatar" class="user-avatar">
+            <img src="../Multimedia/VigilanteAvatar.png" alt="Avatar" class="user-avatar">
             <div class="user-info">
                 <span class="user-name"><?php echo $nombreMostrar; ?></span>
                 <span class="user-details"><?php echo $detallesMostrar; ?></span>
