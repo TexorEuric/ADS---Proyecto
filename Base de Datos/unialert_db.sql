@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-12-2025 a las 00:36:05
+-- Tiempo de generación: 09-12-2025 a las 01:47:30
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -73,19 +73,22 @@ CREATE TABLE `incidentes` (
   `HoraInicio` time DEFAULT curtime(),
   `HoraFin` time DEFAULT NULL,
   `AccionesGuardia` text DEFAULT NULL,
-  `Aprobado` tinyint(4) DEFAULT 0
+  `Aprobado` tinyint(4) DEFAULT 0,
+  `Finalizado` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `incidentes`
 --
 
-INSERT INTO `incidentes` (`IdIncidente`, `IdUsuario`, `IdVigilante`, `EdificioAfectado`, `DepartamentoAfectado`, `Sangre`, `TipoEmergencia`, `PublicoOPrivado`, `Armas`, `Descripcion`, `Fecha`, `HoraInicio`, `HoraFin`, `AccionesGuardia`, `Aprobado`) VALUES
-(9, 11, NULL, 'A2', '23', 1, 'medica', 'cualquiera', 0, 'Detalle: Se cayó del 7mo piso. \n[MÉDICA] Paciente: Vecino 5. Edad: adulto. Sexo: masculino. Consciente: no. Respirando: no. Sangrado en: Todo el Cuerpo.', '2025-12-05', '17:28:20', '17:32:12', NULL, 0),
-(10, 12, NULL, 'A2', '23', 0, 'seguridad', 'publico', 1, 'Detalle: Robo. \n[SEGURIDAD] Sucede ahora: si. Heridos: no. Personas: 3-5. Sospechosos: Personas Morenas con ropa desgastada. Fuga: no_huyeron. Vehículo: . Anónimo: si.', '2025-12-05', '17:29:18', '17:34:15', NULL, 2),
-(11, 14, NULL, 'B1', '18', 0, 'medica', 'publico', 0, 'Detalle: Infarto. \n[MÉDICA] Paciente: Vecino 2. Edad: mayor. Sexo: femenino. Consciente: no. Respirando: si_dificultad.', '2025-12-05', '17:30:02', '17:34:54', NULL, 1),
-(12, 19, NULL, 'B1', '20', 0, 'seguridad', 'publico', 0, 'Detalle: Explosión. \n[SEGURIDAD] Sucede ahora: no. Heridos: si. Personas: mas-de-5. Sospechosos: Vecinos de la unidad. Fuga: no_huyeron. Vehículo: . Anónimo: no.', '2025-12-05', '17:30:49', '17:34:31', NULL, 0),
-(13, 20, NULL, 'B2', '8', 0, 'seguridad', 'publico', 0, 'Detalle: Se cayó un arbol. \n[SEGURIDAD] Sucede ahora: si. Heridos: no. Personas: ?. Sospechosos: . Fuga: . Vehículo: . Anónimo: no.', '2025-12-05', '17:31:28', NULL, NULL, 0);
+INSERT INTO `incidentes` (`IdIncidente`, `IdUsuario`, `IdVigilante`, `EdificioAfectado`, `DepartamentoAfectado`, `Sangre`, `TipoEmergencia`, `PublicoOPrivado`, `Armas`, `Descripcion`, `Fecha`, `HoraInicio`, `HoraFin`, `AccionesGuardia`, `Aprobado`, `Finalizado`) VALUES
+(9, 11, NULL, 'A2', '23', 1, 'medica', 'cualquiera', 0, 'Detalle: Se cayó del 7mo piso. \n[MÉDICA] Paciente: Vecino 5. Edad: adulto. Sexo: masculino. Consciente: no. Respirando: no. Sangrado en: Todo el Cuerpo.', '2025-12-05', '17:28:20', '17:32:12', 'Todo Salió Bien', 0, 1),
+(10, 12, NULL, 'A2', '23', 0, 'seguridad', 'publico', 1, 'Detalle: Robo. \n[SEGURIDAD] Sucede ahora: si. Heridos: no. Personas: 3-5. Sospechosos: Personas Morenas con ropa desgastada. Fuga: no_huyeron. Vehículo: . Anónimo: si.', '2025-12-05', '17:29:18', '17:34:15', NULL, 2, 0),
+(11, 14, NULL, 'B1', '18', 0, 'medica', 'publico', 0, 'Detalle: Infarto. \n[MÉDICA] Paciente: Vecino 2. Edad: mayor. Sexo: femenino. Consciente: no. Respirando: si_dificultad.', '2025-12-05', '17:30:02', '17:34:54', NULL, 1, 0),
+(12, 19, NULL, 'B1', '20', 0, 'seguridad', 'publico', 0, 'Detalle: Explosión. \n[SEGURIDAD] Sucede ahora: no. Heridos: si. Personas: mas-de-5. Sospechosos: Vecinos de la unidad. Fuga: no_huyeron. Vehículo: . Anónimo: no.', '2025-12-05', '17:30:49', '17:34:31', NULL, 1, 0),
+(13, 20, NULL, 'B2', '8', 0, 'seguridad', 'publico', 0, 'Detalle: Se cayó un arbol. \n[SEGURIDAD] Sucede ahora: si. Heridos: no. Personas: ?. Sospechosos: . Fuga: . Vehículo: . Anónimo: no.', '2025-12-05', '17:31:28', NULL, NULL, 0, 0),
+(14, 11, 13, 'A2', '23', 1, 'medica', 'publico', 0, 'Detalle: Le salió sangre de la nariz. \n[MÉDICA] Paciente: Vecino 5. Edad: nino. Sexo: masculino. Consciente: si. Respirando: si. Sangrado en: Nariz.', '2025-12-08', '18:44:28', '01:45:00', 'Se llamó al 911', 0, 1),
+(15, 11, NULL, 'A2', '23', 0, 'seguridad', 'publico', 1, 'Detalle: Asaltaron a una viejita en la calle. \n[SEGURIDAD] Sucede ahora: si. Heridos: no. Personas: 1. Sospechosos: Un tipo moreno, parece vagabundo. Fuga: pie. Vehículo: . Anónimo: si.', '2025-12-08', '18:45:17', NULL, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -212,7 +215,7 @@ ALTER TABLE `credenciales`
 -- AUTO_INCREMENT de la tabla `incidentes`
 --
 ALTER TABLE `incidentes`
-  MODIFY `IdIncidente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `IdIncidente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
