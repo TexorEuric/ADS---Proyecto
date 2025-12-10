@@ -134,7 +134,7 @@ if (!empty($datos['Edificio']) && !empty($datos['Departamento'])) {
                 </div>
                 
                 <div class="form-actions">
-                    <a href="AdminUsuarios.html" class="btn btn-secondary" style="margin-right: 10px; text-decoration: none;">Cancelar</a>
+                    <a href="AdminUsuarios.php" class="btn btn-secondary" style="margin-right: 10px; text-decoration: none;">Cancelar</a>
                     <button type="submit" class="submit-button">Guardar Usuario</button>
                 </div>
             </form>
